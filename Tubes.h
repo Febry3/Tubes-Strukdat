@@ -9,19 +9,20 @@ struct siswa {
     int umur;
 };
 
-typedef struct elemenJadwal *adrSiswa;
-typedef struct elementEkskul *adrEkskul;
-typedef struct elementAngkatan *adrAngkatan;
-typedef struct elementPenghubung *adrPenghubung;
-
 struct ekskul {
     string nama;
     int jumlahPertemuan;
 };
 
-struct angkatan {
-    int tahunMasuk;
-};
+#define info(P) P->info
+#define nextSiswa(P) P->nextSiswa
+#define nextPenghubung(P) P->nextPenghubung
+#define nextEkskul(P) P->nextEkskul
+#define head(L) L.head
+
+typedef struct elementSiswa *adrSiswa;
+typedef struct elementEkskul *adrEkskul;
+typedef struct elementPenghubung *adrPenghubung;
 
 struct elementSiswa {
     siswa info;
@@ -34,25 +35,22 @@ struct elementEkskul {
     adrEkskul nextEkskul;
 };
 
-struct elementAngkatan {
-    angkatan info;
-    adrAngkatan nextAngkatan;
-};
-
 struct elementPenghubung {
-    adrAngkatan Angkatan;
     adrEkskul Ekskul;
+    adrPenghubung nextPenghubung;
 };
 
 struct listSiswa {
     adrSiswa head;
 };
 
-struct listAngkatan {
-    adrAngkatan head;
-};
-
 struct listEkskul {
     adrEkskul head;
 };
+
+void createListSiswa(listSiswa LS);
+void createListEkskul(listEkskul LE);
+adrSiswa createElementSiswa(siswa data);
+adrEkskul createElementEkskul(ekskul data);
+
 #endif // TUBES_H_INCLUDED
