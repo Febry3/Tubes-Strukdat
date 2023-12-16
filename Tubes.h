@@ -5,7 +5,7 @@
 using namespace std;
 
 struct siswa {
-    string namaSiswa, NISN;
+    string namaSiswa, NISN, kelas, jurusan;
     int umur, angkatan;
 };
 
@@ -53,6 +53,10 @@ struct listEkskul {
     adrEkskul head, tail;
 };
 
+//menu
+void menu();
+
+//create
 void createListSiswa(listSiswa &LS);
 void createListEkskul(listEkskul &LE);
 adrSiswa createElementSiswa(siswa data);
@@ -65,7 +69,7 @@ void insertLastEkskul(listEkskul &LE, adrEkskul P);
 void deleteFirstEkskul(listEkskul &LE, adrEkskul &P);
 void deleteLastEkskul(listEkskul &LE, adrEkskul &P);
 void deleteAfterEkskul(listEkskul &LE, adrEkskul prec, adrEkskul &P);
-adrEkskul searchEkskul(ekskul target, listEkskul LE);
+adrEkskul searchEkskul(string namaEkskul, listEkskul LE);
 void showDLL(listEkskul LE);
 
 //Single Linked List element Siswa
@@ -76,5 +80,4 @@ void deleteLastSiswa(listSiswa &LS, adrSiswa &P);
 adrSiswa searchSiswa(string nama, string NISN, listSiswa LS);
 void showSLL(listSiswa LS);
 
-int selecMenu();
 #endif // TUBES_H_INCLUDED
