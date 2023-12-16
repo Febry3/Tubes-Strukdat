@@ -8,24 +8,25 @@ struct siswa {
     string nama, NISN;
     int umur;
 };
+
 typedef struct elemenJadwal *adrSiswa;
+typedef struct elementEkskul *adrEkskul;
+typedef struct elementAngkatan *adrAngkatan;
+typedef struct elementPenghubung *adrPenghubung;
 
 struct ekskul {
     string nama;
     int jumlahPertemuan;
 };
 
-typedef struct elementEkskul *adrEkskul;
-
 struct angkatan {
     int tahunMasuk;
 };
 
-typedef struct elementAngkatan *adrAngkatan;
-
 struct elementSiswa {
     siswa info;
     adrSiswa nextSiswa;
+    adrPenghubung nextPenghubung;
 };
 
 struct elementEkskul {
@@ -36,5 +37,22 @@ struct elementEkskul {
 struct elementAngkatan {
     angkatan info;
     adrAngkatan nextAngkatan;
+};
+
+struct elementPenghubung {
+    adrAngkatan Angkatan;
+    adrEkskul Ekskul;
+};
+
+struct listSiswa {
+    adrSiswa head;
+};
+
+struct listAngkatan {
+    adrAngkatan head;
+};
+
+struct listEkskul {
+    adrEkskul head;
 };
 #endif // TUBES_H_INCLUDED
