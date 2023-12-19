@@ -1,7 +1,11 @@
 # depslib dependency file v1.0
-1702654971 source:d:\koleah\semester 3\data structure\tubes struktur data\tubes.cpp
+1702804350 source:d:\koleah\semester 3\data structure\tubes struktur data\tubes.cpp
 	"Tubes.h"
 
-1702657584 d:\koleah\semester 3\data structure\tubes struktur data\tubes.h
+1702804141 d:\koleah\semester 3\data structure\tubes struktur data\tubes.h
 	<iostream>
+
+1702804123 source:d:\koleah\semester 3\data structure\tubes struktur data\main.cpp
+	<iostream>
+	"Tubes.h"
 

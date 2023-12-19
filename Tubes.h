@@ -6,12 +6,12 @@ using namespace std;
 
 struct siswa {
     string namaSiswa, NISN, kelas, jurusan;
-    int umur, angkatan;
+    int umur, angkatan, jumlahEkskul;
 };
 
 struct ekskul {
     string namaEkskul;
-    int jumlahPertemuan;
+    int jumlahPertemuan, anggota = 0;
 };
 
 #define infoSiswa(P) P->infoSiswa
@@ -55,6 +55,16 @@ struct listEkskul {
 
 //menu
 void menu();
+void menambahkanDataSiswa(listSiswa &LS);
+void menampilkanDataSiswa(listSiswa LS);
+void menghapusDataSiswa(listSiswa &LS);
+void mencariDataSiswa(listSiswa LS);
+void menambahkanDataEkskul(listEkskul &LE);
+void mencariDataEkskul(listEkskul LE);
+void siswaMemilihEkskul(listSiswa &LS, listEkskul &LE);
+void mencariEkskulPadaSeorangSiswa(listSiswa LS);
+void mengurangiEkskulSiswa(listSiswa &LS);
+void menampilkanEkskul(listEkskul LE);
 
 //create
 void createListSiswa(listSiswa &LS);
@@ -80,4 +90,12 @@ void deleteLastSiswa(listSiswa &LS, adrSiswa &P);
 adrSiswa searchSiswa(string nama, string NISN, listSiswa LS);
 void showSLL(listSiswa LS);
 
+//Penghubung
+bool isEkskulDuplicate(adrSiswa adrS, adrEkskul adrE);
+void insertLastPenghubung(listSiswa &LS, adrSiswa adrS, adrEkskul adrE);
+void deleteFirstPenghubung(listSiswa &LS, adrSiswa &adrS);
+void deleteAfterPenghubung(listSiswa &LS, adrSiswa &adrS, adrPenghubung prec);
+void deleteLastPenghubung(listSiswa &LS, adrSiswa &adrS);
+void deleteAllPenghubung(listSiswa &LS, adrSiswa &adrS); 
+adrPenghubung cariEkskulSeorangSiswa(listSiswa LS, adrSiswa adrS, string namaEkskul);
 #endif // TUBES_H_INCLUDED
