@@ -32,8 +32,12 @@ void menambahkanDataSiswa(listSiswa &LS){
     cin >> dataSiswa.NISN;
     cout << "Angkatan: ";
     cin >> dataSiswa.angkatan;
-    insertLastSiswa(LS, createElementSiswa(dataSiswa));
-    cout << "Input Berhasil" << endl;
+    if (!cariSiswa(LS, dataSiswa.namaSiswa, dataSiswa.NISN)) {
+        insertLastSiswa(LS, createElementSiswa(dataSiswa));
+        cout << "Input Berhasil" << endl;
+    } else {
+        cout << "Siswa telah terdaftar" << endl;
+    }
 }
 
 void menampilkanDataSiswa(listSiswa LS) {
@@ -89,13 +93,7 @@ void mencariDataSiswa(listSiswa LS){
     adrSiswa P = searchSiswa(nama, NISN, LS);
 
     if (P != NULL) {
-        cout << "Nama: " << infoSiswa(P).namaSiswa << endl;
-        cout << "Umur: " << infoSiswa(P).umur << endl;
-        cout << "Kelas: " << infoSiswa(P).kelas << endl;
-        cout << "Jurusan: " << infoSiswa(P).jurusan << endl;
-        cout << "NISN: " << infoSiswa(P).NISN << endl;
-        cout << "Angkatan: " << infoSiswa(P).angkatan << endl;
-        cout << "Ekskul yang diikuti: " << endl;
+        showSLL(LS);
     } else {
         cout << "Data Siswa Tidak Ditemukan" << endl;
     }
@@ -432,6 +430,17 @@ void showSLL(listSiswa LS) {
                 P = nextSiswa(P);
             }
         }
+}
+
+bool cariSiswa(listSiswa LS, string nama, string NISN) {
+    adrSiswa P = head(LS);
+    while (P != NULL) {
+        if (infoSiswa(P).namaSiswa == nama && infoSiswa(P).NISN == NISN) {
+            return true;
+        }
+        P = nextSiswa(P);
+    }
+    return false;
 }
 //End of Single Linked List Siswa
 

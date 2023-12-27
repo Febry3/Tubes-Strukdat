@@ -89,6 +89,7 @@ void deleteAfterSiswa(listSiswa &LS, adrSiswa &P, adrSiswa Prec);
 void deleteLastSiswa(listSiswa &LS, adrSiswa &P);
 adrSiswa searchSiswa(string nama, string NISN, listSiswa LS);
 void showSLL(listSiswa LS);
+bool cariSiswa(listSiswa LS, string nama, string NISN);
 
 //Penghubung
 bool isEkskulDuplicate(adrSiswa adrS, adrEkskul adrE);
