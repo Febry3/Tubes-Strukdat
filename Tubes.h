@@ -65,6 +65,7 @@ void siswaMemilihEkskul(listSiswa &LS, listEkskul &LE);
 void mencariEkskulPadaSeorangSiswa(listSiswa LS);
 void mengurangiEkskulSiswa(listSiswa &LS);
 void menampilkanEkskul(listEkskul LE);
+void menampilkanDaftarEkskul(listEkskul LE);
 
 //create
 void createListSiswa(listSiswa &LS);
@@ -97,6 +98,6 @@ void insertLastPenghubung(listSiswa &LS, adrSiswa adrS, adrEkskul adrE);
 void deleteFirstPenghubung(listSiswa &LS, adrSiswa &adrS);
 void deleteAfterPenghubung(listSiswa &LS, adrSiswa &adrS, adrPenghubung prec);
 void deleteLastPenghubung(listSiswa &LS, adrSiswa &adrS);
-void deleteAllPenghubung(listSiswa &LS, adrSiswa &adrS); 
+void deleteAllPenghubung(listSiswa &LS, adrSiswa &adrS);
 adrPenghubung cariEkskulSeorangSiswa(listSiswa LS, adrSiswa adrS, string namaEkskul);
 #endif // TUBES_H_INCLUDED

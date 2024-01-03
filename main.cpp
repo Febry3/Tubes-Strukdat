@@ -3,19 +3,19 @@
 using namespace std;
 
 int main()
-{   
+{
     listSiswa LS;
     createListSiswa(LS);
     listEkskul LE;
     createListEkskul(LE);
-    
+
     int pilihan = 0;
     menu();
     cout << "Masukkan Pilihan: ";
     cin >> pilihan;
     cout << endl;
-    
-    while (pilihan != 10) {
+
+    while (pilihan != 11) {
         switch (pilihan)
         {
         case 1:
@@ -24,11 +24,10 @@ int main()
         case 2:
             menampilkanDataSiswa(LS);
             break;
-        
+
         case 3:
             menghapusDataSiswa(LS);
             break;
-        
         case 4:
             mencariDataSiswa(LS);
             break;
@@ -39,12 +38,15 @@ int main()
             mencariDataEkskul(LE);
             break;
         case 7:
-            siswaMemilihEkskul(LS, LE);
+            menampilkanDaftarEkskul(LE);
             break;
         case 8:
-            mencariEkskulPadaSeorangSiswa(LS);
+            siswaMemilihEkskul(LS, LE);
             break;
         case 9:
+            mencariEkskulPadaSeorangSiswa(LS);
+            break;
+        case 10:
             mengurangiEkskulSiswa(LS);
             break;
         default:

@@ -8,12 +8,13 @@ void menu(){
     cout << "4. Mencari Data Siswa" << endl; //done
     cout << "5. Menambahkan Data Ekskul" << endl; //done
     cout << "6. Mencari Data Ekskul" << endl; //done
-    cout << "7. Siswa Memilih Ekskul (menghubungkan data parent ke child)" << endl; //done
+    cout << "7. Menampilkan data ekskul" << endl;
+    cout << "8. Siswa Memilih Ekskul (menghubungkan data parent ke child)" << endl; //done
     //cout << "8. Menampilkan Data Siswa Beserta Ekskul yang Diikutinya " << endl; //done di nomor 2
-    cout << "8. Mencari Data Ekskul Pada Siswa tertentu" << endl;
-    cout << "9. Menghapus Ekskul pada Siswa Tertentu" << endl;
+    cout << "9. Mencari Data Ekskul Pada Siswa tertentu" << endl;
+    cout << "10. Menghapus Ekskul pada Siswa Tertentu" << endl;
     //cout << "10. Menghitung Jumlah Ekskul yang Diikuti Siswa Tertentu" << endl; //done di nomor 2
-    cout << "10. Keluar" << endl;
+    cout << "11. Keluar" << endl;
     cout << "==================================================================" << endl;
 }
 
@@ -44,7 +45,7 @@ void menampilkanDataSiswa(listSiswa LS) {
     showSLL(LS);
 }
 
-void menghapusDataSiswa(listSiswa &LS) { 
+void menghapusDataSiswa(listSiswa &LS) {
     string nama, NISN;
     showSLL(LS);
     cout << "Nama Siswa yang ingin dihapus: ";
@@ -53,7 +54,7 @@ void menghapusDataSiswa(listSiswa &LS) {
     cin >> NISN;
     cout << endl;
     adrSiswa P = searchSiswa(nama, NISN, LS);
-    
+
     if (P != NULL) {
         adrSiswa Q = head(LS);
         while (nextSiswa(Q) != NULL) {
@@ -75,7 +76,7 @@ void menghapusDataSiswa(listSiswa &LS) {
             }
             deleteAllPenghubung(LS, P);
             deleteAfterSiswa(LS, P, R);
-            cout << "Penghapusan Berhasil" << endl; 
+            cout << "Penghapusan Berhasil" << endl;
         }
     } else {
         cout << "Siswa tidak ditemukan" << endl;
@@ -93,7 +94,14 @@ void mencariDataSiswa(listSiswa LS){
     adrSiswa P = searchSiswa(nama, NISN, LS);
 
     if (P != NULL) {
-        showSLL(LS);
+        cout << "Nama: " << infoSiswa(P).namaSiswa << endl;
+        cout << "Umur: " << infoSiswa(P).umur << endl;
+        cout << "Kelas: " << infoSiswa(P).kelas << endl;
+        cout << "Jurusan: " << infoSiswa(P).jurusan << endl;
+        cout << "NISN: " << infoSiswa(P).NISN << endl;
+        cout << "Angkatan: " << infoSiswa(P).angkatan << endl;
+        cout << "Jumlah ekskul yang diikuti: " << infoSiswa(P).jumlahEkskul << endl;
+        cout << "Ekskul yang diikuti: "<< endl;
     } else {
         cout << "Data Siswa Tidak Ditemukan" << endl;
     }
@@ -124,9 +132,14 @@ void mencariDataEkskul(listEkskul LE) {
     cout << "Masukkan Nama Ekskul yang Ingin Dicari: ";
     cin >> namaEkskul;
     adrEkskul adrE = searchEkskul(namaEkskul, LE);
-    cout << "Nama Ekskul: " << infoEkskul(adrE).namaEkskul << endl;
-    cout << "Jumlah Pertemuan Perminggu: " << infoEkskul(adrE).jumlahPertemuan << endl;
-    cout << "Jumlah Anggota: " << infoEkskul(adrE).anggota << endl;
+    if (adrE != NULL) {
+            cout << "Nama Ekskul: " << infoEkskul(adrE).namaEkskul << endl;
+        cout << "Jumlah Pertemuan Perminggu: " << infoEkskul(adrE).jumlahPertemuan << endl;
+        cout << "Jumlah Anggota: " << infoEkskul(adrE).anggota << endl;
+    }else {
+        cout << "Ekskul tidak ditemukan" << endl;
+    }
+
 }
 
 void siswaMemilihEkskul(listSiswa &LS, listEkskul &LE) {
@@ -152,10 +165,11 @@ void siswaMemilihEkskul(listSiswa &LS, listEkskul &LE) {
             insertLastPenghubung(LS, adrS, adrE);
             infoEkskul(adrE).anggota++;
             infoSiswa(adrS).jumlahEkskul++;
+            cout << "Input Berhasil" << endl;
         } else {
             cout << "Siswa Telah Terdaftar Pada Ekskul Tersebut" << endl;
         }
-        
+
     }
 }
 
@@ -186,7 +200,7 @@ void mencariEkskulPadaSeorangSiswa(listSiswa LS) {
             P = Penghubung(P);
         }
         if (P == NULL) {
-            cout << "Siswa tidak terdapat pada ekskul tersebut" << endl; 
+            cout << "Siswa tidak terdapat pada ekskul tersebut" << endl;
         }
     }
 }
@@ -240,6 +254,10 @@ void mengurangiEkskulSiswa(listSiswa &LS) {
         }
     }
 
+}
+
+void menampilkanDaftarEkskul(listEkskul LE) {
+    showDLL(LE);
 }
 
 //end of menu
@@ -339,13 +357,17 @@ adrEkskul searchEkskul(string namaEkskul, listEkskul LE) {
 
 void showDLL(listEkskul LE){
     adrEkskul P = head(LE);
-    cout << "Daftar Ekskul STM KAPAL LAOET" << endl;
-    while (P != NULL) {
-        cout << "Nama Ekskul: " << infoEkskul(P).namaEkskul << endl;
-        cout << "Jumlah Pertemuan perminggu: " << infoEkskul(P).jumlahPertemuan << endl;
-        cout << "Jumlah Anggota: " << infoEkskul(P).anggota << endl;
+   if (P != NULL) {
+        cout << "Daftar Ekskul STM KAPAL LAOET" << endl;
+        while (P != NULL) {
+            cout << "Nama Ekskul: " << infoEkskul(P).namaEkskul << endl;
+            cout << "Jumlah Pertemuan perminggu: " << infoEkskul(P).jumlahPertemuan << endl;
+            cout << "Jumlah Anggota: " << infoEkskul(P).anggota << endl;
         P = nextEkskul(P);
-    }
+        }
+   } else {
+        cout << "Belum ada ekskul yang didaftar" << endl;
+   }
 }
 
 //end of double linked list
@@ -365,7 +387,7 @@ void insertLastSiswa(listSiswa &LS, adrSiswa P) {
 
 void deleteFirstSiswa(listSiswa &LS, adrSiswa &P) {
     if (head(LS) == NULL) {
-        cout << "Kosong"; 
+        cout << "Kosong";
     } else {
         P = head(LS);
         head(LS) = nextSiswa(P);
@@ -425,7 +447,7 @@ void showSLL(listSiswa LS) {
                     cout << i + 1 << ". " << infoEkskul(Ekskul(Q)).namaEkskul << endl;
                     i++;
                     Q = Penghubung(Q);
-                } 
+                }
                 cout << endl;
                 P = nextSiswa(P);
             }
@@ -470,8 +492,8 @@ void insertLastPenghubung(listSiswa &LS, adrSiswa adrS, adrEkskul adrE){
 
     if (adrE != NULL) {
         Ekskul(P) = adrE;
-    } 
-    
+    }
+
 }
 
 void deleteFirstPenghubung(listSiswa &LS, adrSiswa &adrS){
