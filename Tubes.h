@@ -66,6 +66,7 @@ void mencariEkskulPadaSeorangSiswa(listSiswa LS);
 void mengurangiEkskulSiswa(listSiswa &LS);
 void menampilkanEkskul(listEkskul LE);
 void menampilkanDaftarEkskul(listEkskul LE);
+void jumlahAngkatanPadaEkskul(listSiswa LS, listEkskul LE);
 
 //create
 void createListSiswa(listSiswa &LS);
@@ -100,4 +101,5 @@ void deleteAfterPenghubung(listSiswa &LS, adrSiswa &adrS, adrPenghubung prec);
 void deleteLastPenghubung(listSiswa &LS, adrSiswa &adrS);
 void deleteAllPenghubung(listSiswa &LS, adrSiswa &adrS);
 adrPenghubung cariEkskulSeorangSiswa(listSiswa LS, adrSiswa adrS, string namaEkskul);
+int menghitungAnggotaClubBerdasarkanAngkatan(listSiswa LS, listEkskul LE, string ekskul, int angkatan);
 #endif // TUBES_H_INCLUDED

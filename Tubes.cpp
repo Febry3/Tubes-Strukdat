@@ -14,7 +14,8 @@ void menu(){
     cout << "9. Mencari Data Ekskul Pada Siswa tertentu" << endl;
     cout << "10. Menghapus Ekskul pada Siswa Tertentu" << endl;
     //cout << "10. Menghitung Jumlah Ekskul yang Diikuti Siswa Tertentu" << endl; //done di nomor 2
-    cout << "11. Keluar" << endl;
+    cout << "11. Jumlah Anggota Club Tertentu Berdasarkan Angkatan" << endl;
+    cout << "12. Keluar" << endl;
     cout << "==================================================================" << endl;
 }
 
@@ -101,7 +102,14 @@ void mencariDataSiswa(listSiswa LS){
         cout << "NISN: " << infoSiswa(P).NISN << endl;
         cout << "Angkatan: " << infoSiswa(P).angkatan << endl;
         cout << "Jumlah ekskul yang diikuti: " << infoSiswa(P).jumlahEkskul << endl;
-        cout << "Ekskul yang diikuti: "<< endl;
+        adrPenghubung Q = nextPenghubung(P);
+        int i = 0;
+            while (Q != NULL) {
+                cout << i + 1 << ". " << infoEkskul(Ekskul(Q)).namaEkskul << endl;
+                i++;
+                Q = Penghubung(Q);
+            }
+        cout << endl;
     } else {
         cout << "Data Siswa Tidak Ditemukan" << endl;
     }
@@ -254,6 +262,17 @@ void mengurangiEkskulSiswa(listSiswa &LS) {
         }
     }
 
+}
+
+void jumlahAngkatanPadaEkskul(listSiswa LS, listEkskul LE) {
+    string ekskul;
+    int angkatan;
+    cout << "Masukkan nama ekskul yang ingin dicari: ";
+    cin >> ekskul;
+    cout << "Masukkan angkatan yang ingin dicari pada ekskul tersebut: ";
+    cin >> angkatan;
+    int anggota = menghitungAnggotaClubBerdasarkanAngkatan(LS, LE, ekskul, angkatan);
+    cout << "Jumlah anggota ekskul " << ekskul << " adalah " << anggota << " orang " << " pada angkatan ke-"<< angkatan << endl;
 }
 
 void menampilkanDaftarEkskul(listEkskul LE) {
@@ -543,5 +562,23 @@ void deleteAllPenghubung(listSiswa &LS, adrSiswa &adrS) {
     while (nextPenghubung(adrS) != NULL) {
         deleteLastPenghubung(LS, adrS);
     }
+}
+
+int menghitungAnggotaClubBerdasarkanAngkatan(listSiswa LS, listEkskul LE, string ekskul, int angkatan) {
+    int counter = 0;
+    adrSiswa adrS = head(LS);
+    while (adrS != NULL) {
+        if (infoSiswa(adrS).angkatan == angkatan) {
+            adrPenghubung adrP = nextPenghubung(adrS);
+            while (adrP != NULL) {
+                if (infoEkskul(Ekskul(adrP)).namaEkskul == ekskul) {
+                    counter++;
+                }
+                adrP = Penghubung(adrP);
+            }
+        }
+        adrS = nextSiswa(adrS);
+    }
+    return counter;
 }
 //End of Penghubung

@@ -15,7 +15,7 @@ int main()
     cin >> pilihan;
     cout << endl;
 
-    while (pilihan != 11) {
+    while (pilihan != 12) {
         switch (pilihan)
         {
         case 1:
@@ -24,7 +24,6 @@ int main()
         case 2:
             menampilkanDataSiswa(LS);
             break;
-
         case 3:
             menghapusDataSiswa(LS);
             break;
@@ -48,6 +47,9 @@ int main()
             break;
         case 10:
             mengurangiEkskulSiswa(LS);
+            break;
+        case 11:
+            jumlahAngkatanPadaEkskul(LS, LE);
             break;
         default:
             break;
